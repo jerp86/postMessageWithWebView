@@ -34,23 +34,48 @@ export default class App extends Component {
       <body>
         <script>
           function sendMessage() {
-            window.ReactNativeWebView.postMessage("Hello World! I'm the postMessage from the WebView");
+            const { JSBridge, ReactNativeWebView, webkit } = window;
+            const message = "Hello World! I'm the postMessage from the WebView";
+
+            if (!JSBridge && !ReactNativeWebView && webkit) {
+              webkit.messageHandlers.observer.postMessage(message);
+            }
+
+            if (JSBridge && !webkit && !ReactNativeWebView) {
+              JSBridge.closePWA(message);
+            }
+
+            if (!JSBridge && !webkit && ReactNativeWebView) {
+              ReactNativeWebView.postMessage(message);
+            }
           }
           
           function sendObject() {
+            const { JSBridge, ReactNativeWebView, webkit } = window;
             const jsonObj = JSON.stringify({
               id: 'firstTest',
               name: 'José Eduardo Rodrigues Pinto',
               email: 'jerp4@hotmail.com',
             });
 
-            window.ReactNativeWebView.postMessage(jsonObj);
+            if (!JSBridge && !ReactNativeWebView && webkit) {
+              webkit.messageHandlers.observer.postMessage(jsonObj);
+            }
+
+            if (JSBridge && !webkit && !ReactNativeWebView) {
+              JSBridge.closePWA(jsonObj);
+            }
+
+            if (!JSBridge && !webkit && ReactNativeWebView) {
+              ReactNativeWebView.postMessage(jsonObj);
+            }
           }
         </script>
 
         <button type="button" onclick="sendMessage()">
           Click hear to send message
         </button>
+        <br/>
         <br/>
         <button type="button" onclick="sendObject()">
           Click hear to send object
