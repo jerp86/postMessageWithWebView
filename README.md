@@ -25,7 +25,7 @@
 
 ---
 
-<div style="display: flex; justify-content: space-around">
+<div align="center">
   <img src="https://user-images.githubusercontent.com/54115624/133905963-0e1c3df2-9a82-4be0-864b-4560d716b4d7.png" height="500" alt="app's main screen, with two buttons">
   <img src="https://user-images.githubusercontent.com/54115624/133905971-acd5a9af-f700-4799-b1d7-acc86864ba23.png" height="500" alt="alert message after clicking the 1st button">
   <img src="https://user-images.githubusercontent.com/54115624/133905976-5ba1dd41-69ba-450c-83f0-108f00472a8f.png" height="500" alt="alert message after clicking the 2nd button">
